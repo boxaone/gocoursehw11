@@ -15,12 +15,13 @@ func TestDo(t *testing.T) {
 		wantErr bool
 	}{
 		// TODO: Add test cases.
-		{"0,invalid,true", args{"0", 0, false}, "", true},
-		{"1,invalid,true", args{"1", 1, false}, "", true},
-		{"34,valid,true", args{"z", 13, true}, "", true},
-		{"34,valid,true", args{"c", 34, true}, "C", false},
-		{"1,valid,false", args{"a", 1, false}, "[1a]", false},
-		{"2,valid,true", args{"d", 8, true}, "[8D]", false},
+		{"0,0,true,invalid", args{"0", 0, false}, "", true},
+		{"1,1,true,invalid", args{"1", 1, false}, "", true},
+		{"d,8,false,valid", args{"d", 8, false}, "[8d]", false},
+		{"z,13,true,valid", args{"z", 13, true}, "", true},
+		{"c,34,true,valid", args{"c", 34, true}, "C", false},
+		{"a,1,false,valid", args{"a", 1, false}, "[1a]", false},
+		{"d,8,true,valid", args{"d", 8, true}, "[8D]", false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
